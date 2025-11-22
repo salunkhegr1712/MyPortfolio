@@ -1,7 +1,7 @@
 <nav class="fixed top-4 sm:top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] sm:w-auto max-w-full">
-<div class="relative bg-white/10 backdrop-blur-xl rounded-full border border-white/20 shadow-2xl
-            px-3 sm:px-5 py-2 sm:py-2.5
-            before:absolute before:inset-0 before:rounded-full before:bg-gradient-to-br before:from-white/20 before:to-transparent before:opacity-40
+<div class="relative bg-white/110 backdrop-blur-xl rounded-full border border-white/20 shadow-2xl
+            px-4 sm:px-6 py-3 sm:py-2.5
+            before:absolute before:inset-0 before:rounded-full before:bg-gradient-to-br before:from-white/20 before:to-transparent before:opacity-30
             after:absolute after:inset-0 after:rounded-full after:bg-gradient-to-tl after:from-cyan-500/10 after:via-transparent after:to-blue-500/10">
 
     <div class="relative z-10 flex items-center gap-4 sm:gap-8">
@@ -9,9 +9,8 @@
       <ul class="flex items-center gap-3 sm:gap-6 w-full justify-between sm:justify-start" role="menubar">
         <li role="none">
           <a 
-            routerLink="/" 
-            routerLinkActive="border-b-2 border-green-400 text-white"
-            [routerLinkActiveOptions]="{ exact: true }"
+            routerLink="/home" 
+            routerLinkActive="text-white font-semibold border-b-2 border-green-400 drop-shadow-[0_2px_6px_rgba(0,150,150,0.45)]"
             class="text-base sm:text-lg text-gray-300 hover:text-white hover:border-b-2 hover:border-white transition-all duration-200 outline-none px-2 sm:px-3 py-1 sm:py-1.5 border-b-2 border-transparent"
             role="menuitem">
             Home
@@ -20,7 +19,7 @@
         <li role="none">
           <a 
             routerLink="/projects" 
-            routerLinkActive="border-b-2 border-green-400 text-white"
+            routerLinkActive="text-white font-semibold border-b-2 border-green-400 drop-shadow-[0_2px_6px_rgba(0,150,150,0.45)]"
             class="text-base sm:text-lg text-gray-300 hover:text-white hover:border-b-2 hover:border-white transition-all duration-200 outline-none px-2 sm:px-3 py-1 sm:py-1.5 border-b-2 border-transparent"
             role="menuitem">
             Projects
@@ -29,7 +28,7 @@
         <li role="none">
           <a 
             routerLink="/skills" 
-            routerLinkActive="border-b-2 border-green-400 text-white"
+            routerLinkActive="text-white font-semibold border-b-2 border-green-400 drop-shadow-[0_2px_6px_rgba(0,150,150,0.45)]"
             class="text-base sm:text-lg text-gray-300 hover:text-white hover:border-b-2 hover:border-white transition-all duration-200 outline-none px-2 sm:px-3 py-1 sm:py-1.5 border-b-2 border-transparent"
             role="menuitem">
             Skills
@@ -38,7 +37,7 @@
         <li role="none">
           <a 
             routerLink="/about" 
-            routerLinkActive="border-b-2 border-green-400 text-white"
+            routerLinkActive="text-white font-semibold border-b-2 border-green-400 drop-shadow-[0_2px_6px_rgba(0,150,150,0.45)]"
             class="text-base sm:text-lg text-gray-300 hover:text-white hover:border-b-2 hover:border-white transition-all duration-200 outline-none px-2 sm:px-3 py-1 sm:py-1.5 border-b-2 border-transparent"
             role="menuitem">
             About
@@ -47,7 +46,7 @@
         <li role="none">
           <a 
             routerLink="/contact" 
-            routerLinkActive="border-b-2 border-green-400 text-white"
+            routerLinkActive="text-white font-semibold border-b-2 border-green-400 drop-shadow-[0_2px_6px_rgba(0,150,150,0.45)]"
             class="text-base sm:text-lg text-gray-300 hover:text-white hover:border-b-2 hover:border-white transition-all duration-200 outline-none px-2 sm:px-3 py-1 sm:py-1.5 border-b-2 border-transparent"
             role="menuitem">
             Contact
@@ -56,5 +55,5 @@
       </ul>
     </div>
   </div>
-  <div class="h-6 sm:h-8"></div>
+  <div class="h-6 sm:h-10"></div>
 </nav>

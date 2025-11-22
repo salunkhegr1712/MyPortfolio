@@ -1,48 +1,91 @@
 <app-navbar></app-navbar>
 
-<!-- Hero Section -->
-<section class="hero-section relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-black via-gray-950 to-blue-950">
-  <!-- Interactive SVG Pattern Background (decorative) -->
-  <div appPatterns [intensity]="0.25" class="pattern-container absolute inset-0 z-0"></div>
+<section
+  class="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-gradient-to-br from-black via-slate-950 to-blue-950"
+>
+  <div
+    appPatterns
+    [intensity]="0.25"
+    class="absolute inset-0 z-0 opacity-50"
+  ></div>
 
-  <!-- Main Content -->
-  <div class="content-wrapper relative z-10 container mx-auto px-4 sm:px-6 md:px-12 lg:px-16 max-w-6xl">
-    <div class="hero-content max-w-3xl mx-auto text-center">
-      <!-- Main Heading -->
-      <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight">
-        Ghanasham Salunkhe
+  <!-- tightened container width for better readability -->
+  <div class="relative z-10 container mx-auto px-6 max-w-2xl text-center">
+    <div class="flex flex-col gap-2 mb-6">
+      <h1
+        class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-tight"
+      >
+        Ghanasham Rajaram Salunkhe
       </h1>
+      <br>
+      <h2
+        class="text-lg sm:text-lg md:text-xl text-blue-200 font-medium tracking-wide"
+      >
+        Java Backend Engineer • Data Engineer
+      </h2>
+        <br>
+    </div>
 
-      <!-- Subtitle -->
-      <p class="text-base sm:text-lg md:text-xl text-gray-300 mb-6 sm:mb-8 px-4 sm:px-0">
-        Java Backend Engineer • Data Engineer (Spark, Databricks, Azure)
+    <!-- tighter vertical rhythm and improved line-height -->
+    <div
+      class="max-w-2xl mx-auto mb-8 space-y-4 text-slate-300 text-sm sm:text-base leading-7"
+    >
+      <p>
+        I’m a Java Backend Engineer and Data Engineer from Maharashtra, India.
+        I design production-grade Spring Boot services and build large-scale data
+        pipelines using
+        <span class="text-white font-semibold"
+          >Apache Spark, Databricks, Azure Data Lake, Kafka, and Event Hubs</span
+        >.
       </p>
 
-      <!-- Call to Action Buttons -->
-      <div class="cta-buttons flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center items-center px-4 sm:px-0" role="group" aria-label="Primary actions">
-        <!-- Resume Button -->
-        <a
-          href="/assets/resume.pdf"
-          download
-          class="btn-resume w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 rounded-md font-semibold text-white border-2 transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-offset-gray-900"
-          [style.border-color]="accentColor"
-          [style.background-color]="accentColor"
-          [style.focus.ring-color]="accentColor"
-          aria-label="Download resume">
-          Resume
-        </a>
+      <p>
+        I work at <span class="text-white font-semibold">SG GSC India, Bengaluru</span>,
+        focusing on backend architecture, scalable data processing, and cloud-native systems.
+      </p>
 
-        <!-- View Projects Button -->
-        <a
-          routerLink="/projects"
-          class="btn-projects w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 rounded-md font-semibold text-white border-2 transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-offset-gray-900"
-          [style.border-color]="accentColor"
-          [style.color]="accentColor"
-          [style.focus.ring-color]="accentColor"
-          aria-label="Navigate to projects page">
-          View Projects
-        </a>
-      </div>
+      <p>
+        I graduated from
+        <span class="text-white font-semibold">College of Engineering Pune (COEP)</span>
+        with a B.E. in Computer Engineering and secured
+        <span class="text-white font-semibold">All-India Rank 100</span> in the MHT-CET 2019 exam.
+      </p>
+
+      <p>
+        I’m open to backend or data engineering roles involving high-impact systems,
+        distributed processing, and modern cloud infrastructure.
+      </p>
     </div>
+
+    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+      <!-- Primary CTA (keeps your accentColor binding, adds shadow and lift) -->
+      <a
+        href="/assets/resume.pdf"
+        download
+        class="w-full sm:w-auto px-8 py-3.5 rounded-lg font-semibold text-white transition-transform transform hover:-translate-y-1 shadow-md focus:outline-none focus:ring-4 focus:ring-opacity-50"
+        [style.border-color]="accentColor"
+        [style.background-color]="accentColor"
+        [style.box-shadow]="'0 8px 24px rgba(0,0,0,0.35)'" 
+        [style.focus.ring-color]="accentColor"
+        aria-label="Download resume"
+      >
+        Download Resume
+      </a>
+
+      <!-- Secondary CTA: outline + subtle glass effect, color bound to accent -->
+      <a
+        routerLink="/projects"
+        class="w-full sm:w-auto px-8 py-3.5 rounded-lg font-semibold text-white/90 border-2 border-white/10 backdrop-blur-sm transition-colors hover:bg-white/5 focus:outline-none focus:ring-4 focus:ring-opacity-50"
+        [style.border-color]="accentColor"
+        [style.color]="accentColor"
+        [style.focus.ring-color]="accentColor"
+        aria-label="View projects"
+      >
+        View Projects
+      </a>
+    </div>
+
+    <!-- subtle divider for visual finish -->
+    <div class="mx-auto mt-8 w-20 h-0.5 bg-white/5 rounded-full"></div>
   </div>
 </section>
