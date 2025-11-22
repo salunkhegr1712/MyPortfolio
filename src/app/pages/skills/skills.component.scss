@@ -1,0 +1,41 @@
+// Hide default progress element, use visual replacement
+.skill-progress {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+// Progress bar container
+.progress-container {
+  position: relative;
+}
+
+// Visual progress bar animation
+.progress-fill {
+  will-change: width;
+}
+
+// Category button hover effect
+.category-button {
+  &.active {
+    box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.5);
+  }
+}
+
+// Reduced motion override
+@media (prefers-reduced-motion: reduce) {
+  .progress-fill {
+    transition: none;
+    will-change: auto;
+  }
+
+  .category-button {
+    transition: none;
+  }
+}

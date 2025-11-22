@@ -1,0 +1,63 @@
+// Stack container positioning
+.stack-container {
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  
+  // Hide scrollbar while keeping functionality
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+  
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+  }
+}
+
+// Panel wrapper with slide-in animation
+.panel-wrapper {
+  will-change: transform, opacity;
+  
+  &.slide-in {
+    animation: slideInFromRight 200ms ease-out forwards;
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+// Reduced motion override
+@media (prefers-reduced-motion: reduce) {
+  .panel-wrapper {
+    animation: none !important;
+    will-change: auto;
+    
+    &.slide-in {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideInFromRight {
+    from, to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+}

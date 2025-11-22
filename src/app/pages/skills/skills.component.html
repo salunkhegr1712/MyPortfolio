@@ -1,0 +1,92 @@
+<app-navbar></app-navbar>
+
+<main class="skills-page min-h-screen bg-gradient-to-br from-black via-gray-950 to-blue-950 pt-20 pb-16">
+  <div class="container mx-auto px-6 md:px-12 lg:px-16 max-w-7xl">
+    
+    <!-- Hero Header -->
+    <header class="mb-12 mt-8">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div>
+          <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Skills & Expertise</h1>
+          <p class="text-lg text-gray-300 max-w-2xl">
+            Core competencies across backend development, data engineering, and cloud technologies.
+          </p>
+        </div>
+        <button
+          (click)="exportSkills()"
+          class="self-start md:self-auto px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+          type="button"
+          aria-label="Export skills as JSON file">
+          Export JSON
+        </button>
+      </div>
+    </header>
+
+    <!-- Skills Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+      
+      <!-- Categories Sidebar -->
+      <aside class="lg:col-span-1" aria-label="Skill categories">
+        <nav class="space-y-2">
+          <button
+            *ngFor="let category of skills; trackBy: trackByCategoryName"
+            (click)="selectCategory(category.name)"
+            [class.active]="isCategorySelected(category.name)"
+            class="category-button w-full text-left px-4 py-3 rounded-lg text-gray-300 hover:bg-gray-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+            [class.bg-gray-700]="selectedCategory === category.name"
+            [class.text-white]="selectedCategory === category.name"
+            [class.font-semibold]="selectedCategory === category.name"
+            [attr.aria-pressed]="selectedCategory === category.name"
+            [attr.aria-label]="'Filter by ' + category.name"
+            type="button">
+            {{ category.name }}
+          </button>
+        </nav>
+      </aside>
+
+      <!-- Skills Content -->
+      <section class="lg:col-span-3 space-y-8" aria-label="Skills list">
+        <article
+          *ngFor="let category of skills; trackBy: trackByCategoryName"
+          [hidden]="!isCategorySelected(category.name)"
+          class="skill-category bg-gray-800 rounded-lg p-6 border border-gray-700">
+          
+          <h2 class="text-2xl font-bold text-white mb-6">{{ category.name }}</h2>
+
+          <div class="space-y-5">
+            <div
+              *ngFor="let skill of category.skills; trackBy: trackBySkillName"
+              class="skill-item">
+              
+              <!-- Skill Header -->
+              <div class="flex justify-between items-center mb-2">
+                <h3 class="text-gray-200 font-medium">{{ skill.name }}</h3>
+                <span class="text-sm text-gray-400" aria-label="Proficiency level">{{ skill.level }}%</span>
+              </div>
+
+              <!-- Progress Bar -->
+              <div class="progress-container">
+                <!-- Accessible HTML5 progress element -->
+                <progress
+                  [value]="skill.level"
+                  max="100"
+                  class="skill-progress w-full h-2 rounded-full overflow-hidden"
+                  [attr.aria-label]="skill.name + ' proficiency: ' + skill.level + ' percent'">
+                  {{ skill.level }}%
+                </progress>
+                
+                <!-- Visual progress bar (styled) -->
+                <div class="progress-bar-visual h-2 bg-gray-700 rounded-full overflow-hidden" aria-hidden="true">
+                  <div
+                    class="progress-fill h-full bg-gradient-to-r from-blue-500 to-blue-600 transition-all duration-500"
+                    [style.width.%]="skill.level">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+    </div>
+  </div>
+</main>

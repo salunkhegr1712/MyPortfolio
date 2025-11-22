@@ -1,0 +1,27 @@
+<!-- Stack Container - Fixed on right side -->
+<div class="stack-container fixed right-4 top-1/2 -translate-y-1/2 z-40 flex flex-col gap-3 max-w-md"
+     role="complementary"
+     aria-live="polite"
+     aria-label="Panel stack">
+  
+  <!-- Render panels from top to bottom -->
+  <div *ngFor="let panel of stack; let i = index; trackBy: trackByPanelId"
+       class="panel-wrapper"
+       [class.slide-in]="!isPanelCollapsed(i, panel)"
+       [style.animation-delay.ms]="i * 50">
+    
+    <app-stack-panel
+      [state]="panel"
+      [collapsed]="isPanelCollapsed(i, panel)"
+      (close)="onPanelClose($event)"
+      (pinToggle)="onPinToggle($event)"
+      (reopen)="onPanelReopen($event)">
+    </app-stack-panel>
+  </div>
+
+  <!-- Empty state message (optional, for debugging) -->
+  <div *ngIf="stack.length === 0" 
+       class="text-gray-400 text-sm italic p-4 bg-gray-100 rounded-md opacity-50">
+    No panels open
+  </div>
+</div>

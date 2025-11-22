@@ -1,0 +1,48 @@
+<app-navbar></app-navbar>
+
+<!-- Hero Section -->
+<section class="hero-section relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-black via-gray-950 to-blue-950">
+  <!-- Interactive SVG Pattern Background (decorative) -->
+  <div appPatterns [intensity]="0.25" class="pattern-container absolute inset-0 z-0"></div>
+
+  <!-- Main Content -->
+  <div class="content-wrapper relative z-10 container mx-auto px-4 sm:px-6 md:px-12 lg:px-16 max-w-6xl">
+    <div class="hero-content max-w-3xl mx-auto text-center">
+      <!-- Main Heading -->
+      <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight">
+        Ghanasham Salunkhe
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="text-base sm:text-lg md:text-xl text-gray-300 mb-6 sm:mb-8 px-4 sm:px-0">
+        Java Backend Engineer • Data Engineer (Spark, Databricks, Azure)
+      </p>
+
+      <!-- Call to Action Buttons -->
+      <div class="cta-buttons flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center items-center px-4 sm:px-0" role="group" aria-label="Primary actions">
+        <!-- Resume Button -->
+        <a
+          href="/assets/resume.pdf"
+          download
+          class="btn-resume w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 rounded-md font-semibold text-white border-2 transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-offset-gray-900"
+          [style.border-color]="accentColor"
+          [style.background-color]="accentColor"
+          [style.focus.ring-color]="accentColor"
+          aria-label="Download resume">
+          Resume
+        </a>
+
+        <!-- View Projects Button -->
+        <a
+          routerLink="/projects"
+          class="btn-projects w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 rounded-md font-semibold text-white border-2 transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-offset-gray-900"
+          [style.border-color]="accentColor"
+          [style.color]="accentColor"
+          [style.focus.ring-color]="accentColor"
+          aria-label="Navigate to projects page">
+          View Projects
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

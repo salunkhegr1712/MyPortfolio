@@ -1,0 +1,187 @@
+<app-navbar></app-navbar>
+
+<main class="contact-page min-h-screen bg-gradient-to-br from-black via-gray-950 to-blue-950 pt-20 pb-16">
+  <div class="container mx-auto px-6 md:px-12 lg:px-16 max-w-5xl">
+
+    <!-- Header -->
+    <header class="mb-12 mt-8">
+      <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Get in Touch</h1>
+      <p class="text-lg text-gray-300 max-w-2xl">
+        Have a question or want to work together? Fill out the form below or reach out via alternative channels.
+      </p>
+    </header>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      
+      <!-- Contact Form -->
+      <section class="lg:col-span-2" aria-labelledby="contact-form-heading">
+        <h2 id="contact-form-heading" class="sr-only">Contact form</h2>
+        
+        <!-- Success Message -->
+        <div
+          *ngIf="showSuccess"
+          class="mb-6 p-4 bg-green-900/50 border border-green-600 rounded-lg text-green-200"
+          role="alert"
+          aria-live="polite"
+          aria-atomic="true">
+          <p class="font-semibold">Message sent successfully!</p>
+          <p class="text-sm">Thank you for reaching out. I'll get back to you soon.</p>
+        </div>
+
+        <form
+          (submit)="submitContact($event)"
+          class="bg-gray-800 border border-gray-700 rounded-lg p-6 md:p-8"
+          novalidate>
+          
+          <!-- Name Field -->
+          <div class="form-group mb-6">
+            <label for="name" class="block text-sm font-medium text-gray-300 mb-2">
+              Name <span class="text-red-400" aria-label="required">*</span>
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              [(ngModel)]="formData.name"
+              (blur)="validateField('name')"
+              [attr.aria-invalid]="submitted && errors.name ? 'true' : 'false'"
+              [attr.aria-describedby]="errors.name ? 'name-error' : null"
+              class="w-full px-4 py-3 bg-gray-900 border border-gray-600 rounded text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              [class.border-red-500]="submitted && errors.name"
+              required>
+            <p
+              *ngIf="submitted && errors.name"
+              id="name-error"
+              class="mt-2 text-sm text-red-400"
+              role="alert">
+              {{ errors.name }}
+            </p>
+          </div>
+
+          <!-- Email Field -->
+          <div class="form-group mb-6">
+            <label for="email" class="block text-sm font-medium text-gray-300 mb-2">
+              Email <span class="text-red-400" aria-label="required">*</span>
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              [(ngModel)]="formData.email"
+              (blur)="validateField('email')"
+              [attr.aria-invalid]="submitted && errors.email ? 'true' : 'false'"
+              [attr.aria-describedby]="errors.email ? 'email-error' : null"
+              class="w-full px-4 py-3 bg-gray-900 border border-gray-600 rounded text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              [class.border-red-500]="submitted && errors.email"
+              required>
+            <p
+              *ngIf="submitted && errors.email"
+              id="email-error"
+              class="mt-2 text-sm text-red-400"
+              role="alert">
+              {{ errors.email }}
+            </p>
+          </div>
+
+          <!-- Subject Field -->
+          <div class="form-group mb-6">
+            <label for="subject" class="block text-sm font-medium text-gray-300 mb-2">
+              Subject <span class="text-red-400" aria-label="required">*</span>
+            </label>
+            <input
+              type="text"
+              id="subject"
+              name="subject"
+              [(ngModel)]="formData.subject"
+              (blur)="validateField('subject')"
+              [attr.aria-invalid]="submitted && errors.subject ? 'true' : 'false'"
+              [attr.aria-describedby]="errors.subject ? 'subject-error' : null"
+              class="w-full px-4 py-3 bg-gray-900 border border-gray-600 rounded text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              [class.border-red-500]="submitted && errors.subject"
+              required>
+            <p
+              *ngIf="submitted && errors.subject"
+              id="subject-error"
+              class="mt-2 text-sm text-red-400"
+              role="alert">
+              {{ errors.subject }}
+            </p>
+          </div>
+
+          <!-- Message Field -->
+          <div class="form-group mb-6">
+            <label for="message" class="block text-sm font-medium text-gray-300 mb-2">
+              Message <span class="text-red-400" aria-label="required">*</span>
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              rows="6"
+              [(ngModel)]="formData.message"
+              (blur)="validateField('message')"
+              [attr.aria-invalid]="submitted && errors.message ? 'true' : 'false'"
+              [attr.aria-describedby]="errors.message ? 'message-error' : null"
+              class="w-full px-4 py-3 bg-gray-900 border border-gray-600 rounded text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+              [class.border-red-500]="submitted && errors.message"
+              required></textarea>
+            <p
+              *ngIf="submitted && errors.message"
+              id="message-error"
+              class="mt-2 text-sm text-red-400"
+              role="alert">
+              {{ errors.message }}
+            </p>
+          </div>
+
+          <!-- reCAPTCHA Stub (optional) -->
+          <div *ngIf="showRecaptchaStub" class="mb-6">
+            <div class="bg-gray-700 border border-gray-600 rounded p-4 text-center text-gray-400 text-sm">
+              <p>reCAPTCHA placeholder (integration pending)</p>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button
+            type="submit"
+            class="w-full px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800">
+            Send Message
+          </button>
+        </form>
+      </section>
+
+      <!-- Alternative Contact Methods -->
+      <aside class="lg:col-span-1" aria-labelledby="alternative-contact-heading">
+        <h2 id="alternative-contact-heading" class="text-2xl font-bold text-white mb-6">Connect With Me</h2>
+        
+        <div class="space-y-4">
+          <article
+            *ngFor="let contact of alternateContacts; trackBy: trackByType"
+            class="contact-card bg-gray-800 border border-gray-700 rounded-lg p-5 hover:border-blue-500 transition-colors duration-200">
+            
+            <div class="flex items-start gap-4">
+              <!-- Icon -->
+              <div class="flex-shrink-0 w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" [attr.d]="contact.icon"/>
+                </svg>
+              </div>
+
+              <!-- Content -->
+              <div class="flex-1 min-w-0">
+                <h3 class="text-sm font-semibold text-gray-400 mb-1">{{ contact.type }}</h3>
+                <a
+                  [href]="contact.href"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-blue-400 hover:text-blue-300 text-sm break-all focus:outline-none focus:ring-2 focus:ring-blue-500 rounded"
+                  [attr.aria-label]="'Contact via ' + contact.type">
+                  {{ contact.value }}
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </aside>
+    </div>
+  </div>
+</main>

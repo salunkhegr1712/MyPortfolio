@@ -1,0 +1,64 @@
+// Hero section styles
+.hero-section {
+  // Ensure stacking context
+  position: relative;
+  isolation: isolate;
+}
+
+// Pattern container optimization
+.pattern-container {
+  // GPU acceleration hint
+  will-change: auto;
+  
+  // Ensure pattern stays behind content
+  z-index: 0;
+}
+
+// Content wrapper
+.content-wrapper {
+  z-index: 10;
+}
+
+// Button hover effects with transform optimization
+.cta-buttons {
+  a {
+    will-change: transform;
+    
+    &:hover {
+      transform: scale(1.05);
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+}
+
+// Reduced motion override
+@media (prefers-reduced-motion: reduce) {
+  // Disable all transforms and transitions
+  .cta-buttons a {
+    transition: none;
+    will-change: auto;
+    
+    &:hover,
+    &:active {
+      transform: none;
+    }
+  }
+
+  // Ensure pattern doesn't animate
+  .pattern-container {
+    :deep(.pattern-group) {
+      transform: none !important;
+      transition: none !important;
+      will-change: auto !important;
+    }
+  }
+}
+
+// Focus visible enhancement for better accessibility
+.cta-buttons a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}

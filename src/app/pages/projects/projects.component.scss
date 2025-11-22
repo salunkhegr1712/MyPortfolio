@@ -1,0 +1,37 @@
+// Project card hover effect
+.project-card {
+  will-change: transform;
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  }
+}
+
+// Filter chip active state
+.filter-chip {
+  &.active {
+    transform: scale(1.05);
+  }
+}
+
+// Reduced motion override
+@media (prefers-reduced-motion: reduce) {
+  .project-card {
+    transition: none;
+    will-change: auto;
+    
+    &:hover {
+      transform: none;
+      box-shadow: none;
+    }
+  }
+
+  .filter-chip {
+    transition: none;
+    
+    &.active {
+      transform: none;
+    }
+  }
+}

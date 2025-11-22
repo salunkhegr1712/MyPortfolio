@@ -1,0 +1,22 @@
+// Timeline hover effect
+.timeline-entry {
+  .bg-gray-800 {
+    transition: border-color 0.2s ease;
+  }
+}
+
+// Smooth scroll behavior
+html {
+  scroll-behavior: smooth;
+}
+
+// Reduced motion override
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .timeline-entry .bg-gray-800 {
+    transition: none;
+  }
+}

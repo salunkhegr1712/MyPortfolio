@@ -1,0 +1,24 @@
+// Panel animations
+.stack-panel {
+  will-change: transform;
+  transform-origin: right center;
+}
+
+// Badge animations
+.stack-badge {
+  will-change: transform, opacity;
+}
+
+// Reduced motion override
+@media (prefers-reduced-motion: reduce) {
+  .stack-panel,
+  .stack-badge {
+    transition: none !important;
+    will-change: auto;
+  }
+}
+
+// Ensure smooth scrolling in content
+.panel-content {
+  -webkit-overflow-scrolling: touch;
+}
