@@ -1,0 +1,62 @@
+{
+  "name": "Ghanasham Salunkhe",
+  "bio": "Backend Engineer and Data Engineer blending Java/Spring Boot microservices with practical big-data engineering on Spark and Databricks. I design systems that don’t fall apart under load, automate data pipelines end-to-end, and deploy everything on Azure with clean, maintainable architecture. My work leans toward performance, reliability, and solving real business problems rather than stacking buzzwords.",
+  "resumePath": "https://drive.usercontent.google.com/uc?id=11fPVT3xreK7BYEglpTNiUj_lyinm7YEc&export=download",
+  "headshot": "https://lh3.googleusercontent.com/a/ACg8ocIIY_f3kX_oQi4jXUHUkxJyZEdRZ-zBTevfZy5cKkVDTSbZ4IY4Og=s288-c-no",
+  "technologies": [
+    "Java",
+    "Spring Boot",
+    "Apache Spark",
+    "Databricks",
+    "Azure Data Lake",
+    "Delta Lake",
+    "Python",
+    "TypeScript",
+    "Angular",
+    "Docker",
+    "Kubernetes",
+    "Kafka",
+    "Hadoop",
+    "CI/CD",
+    "REST APIs"
+  ],
+  "timeline": [
+    {
+      "year": "June/2023 - Present",
+      "role": "Software Engineer",
+      "description": "Working as a full-time Software Engineer with focus on backend systems, data engineering pipelines, microservices, and distributed processing using Java, Spring Boot, Apache Spark, Databricks, Kafka, and Azure."
+    }
+  ],
+  "education": [
+    {
+      "year": "2019 - 2023",
+      "degree": "B. Tech in Computer Engineering",
+      "institution": "COEP Technological University, Pune (Former College of Engineering, Pune)",
+      "score": "6.75 CGPA"
+    },
+    {
+      "year": "2017 - 2019",
+      "degree": "Higher Secondary Certificate (HSC)",
+      "institution": "Maharashtra State Board",
+      "score": "79.69%"
+    },
+    {
+      "year": "2016 - 2017",
+      "degree": "Secondary School Certificate (SSC)",
+      "institution": "Maharashtra State Board",
+      "score": "90.40%"
+    }
+  ],
+  "competitiveExams": [
+    {
+      "exam": "MHT-CET (AIR - 100)",
+      "year": "2019",
+      "percentile": "99.99445"
+    },
+    {
+      "exam": "JEE Mains",
+      "year": "2019",
+      "percentile": "96.6337"
+    }
+  ]
+}

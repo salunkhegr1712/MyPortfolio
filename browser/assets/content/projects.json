@@ -1,0 +1,100 @@
+{
+  "projects": [
+    {
+      "id": "1",
+      "title": "Credit Risk Management System",
+      "summary": "Real-time credit risk evaluation platform combining Spring Boot microservices with Spark batch & streaming jobs on Databricks to score and alert on repayment risk.",
+      "tech": ["Java", "Spring Boot", "Apache Spark", "PySpark", "Databricks", "Azure Data Lake", "Delta Lake", "Kafka", "Azure Event Hubs", "AKS", "Docker", "Jenkins"],
+      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=450&fit=crop",
+      "demoUrl": "",
+      "repoUrl": "https://github.com/salunkhegr1712/DE-Final-Project",
+      "role": "Lead Implementation (backend & data pipelines)",
+      "duration": "6 months",
+      "impact": "Processed 3M+ records/day; improved end-to-end scoring latency and increased pipeline reliability with medallion architecture and automated tests.",
+      "notes": [
+        "Implemented medallion architecture with Delta Lake and incremental ETL.",
+        "Automated tests and CI/CD pipelines for multi-environment rollouts."
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Vehicle Speed Detection (YOLOv7)",
+      "summary": "OCR and object-detection pipeline to detect vehicle speed and license plates from video streams. Optimized GPU inference and built violation-flagging modules.",
+      "tech": ["Python", "YOLOv7", "OpenCV", "TensorRT (optional)", "Docker"],
+      "image": "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=800&h=450&fit=crop",
+      "demoUrl": "",
+      "repoUrl": "https://github.com/salunkhegr1712/Traffic-Survelliance-System",
+      "role": "Algorithm & Pipeline Developer",
+      "duration": "3 months",
+      "impact": "Built GPU-accelerated inference pipeline with license-plate OCR and event logging for downstream analytics.",
+      "notes": [
+        "Optimized model inference for GPU; integrated OCR for license-plate extraction.",
+        "Produces event logs for downstream analytics and violation reporting."
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Online Banking Platform",
+      "summary": "Full-stack online banking application with role-based authentication, secure transaction workflows, and reporting dashboards.",
+      "tech": ["Java", "Spring Boot", "Hibernate", "JPA", "Angular", "TypeScript", "MySQL", "JWT"],
+      "image": "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=450&fit=crop",
+      "demoUrl": "",
+      "repoUrl": "https://github.com/salunkhegr1712/online-banking-platform",
+      "role": "Backend Developer (APIs & Auth)",
+      "duration": "4 months",
+      "impact": "Delivered secure REST APIs, integrated frontend dashboards, and implemented role-based access and transaction audit trails.",
+      "notes": [
+        "Implemented role-based authentication and audit trails.",
+        "Integrated frontend dashboards for transaction reporting."
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Heart Disease Prediction System",
+      "summary": "Machine-learning system (Jupyter notebook) that trains and evaluates models to predict heart disease — reported accuracy 94.60%. Uses CSV dataset and shows end-to-end notebook-based workflow.",
+      "tech": ["Python", "Pandas", "Scikit-learn", "Jupyter Notebook"],
+      "image": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=450&fit=crop",
+      "demoUrl": "",
+      "repoUrl": "https://github.com/salunkhegr1712/Heart-Disease-Prediction-System",
+      "role": "Data Scientist / ML Developer",
+      "duration": "1–2 months",
+      "impact": "Proof-of-concept ML model with 94.6% accuracy on provided dataset; includes notebook, dataset and output CSVs for reproducibility.",
+      "notes": [
+        "Notebook includes data cleaning, feature engineering, model training, and evaluation.",
+        "Contains original dataset and reproducible prediction outputs."
+      ]
+    },
+    {
+      "id": "5",
+      "title": "HTTP Server Project",
+      "summary": "Custom HTTP server implementations and supporting scripts (Python) created as a Computer Networks project. Contains server scripts, daemon, and test files.",
+      "tech": ["Python", "Sockets", "HTTP", "Shell scripting"],
+      "image": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=450&fit=crop",
+      "demoUrl": "",
+      "repoUrl": "https://github.com/salunkhegr1712/Http-Server-Project",
+      "role": "Author / Implementer",
+      "duration": "Course project (semester)",
+      "impact": "Implements basic HTTP server functionality, suitable as a teaching/demo artifact for networking concepts; includes server and daemon scripts and project notes.",
+      "notes": [
+        "Repo contains server.py, serverHTTP.py, daemon.py, and a project notes PDF showing iterative development.",
+        "Good demonstration of low-level socket programming and HTTP basics."
+      ]
+    },
+    {
+      "id": "7",
+      "title": "Simon Game",
+      "summary": "Classic Simon memory game recreated with JavaScript, providing audio-visual pattern playback and user interaction mechanics.",
+      "tech": ["HTML", "CSS", "JavaScript"],
+      "image": "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=800&h=450&fit=crop",
+      "demoUrl": "",
+      "repoUrl": "https://github.com/salunkhegr1712/Simon",
+      "role": "Frontend Developer",
+      "duration": "Short (game logic exercise)",
+      "impact": "Interactive browser game demonstrating DOM manipulation, event handling, color/audio sequencing, and basic state management.",
+      "notes": [
+        "Implements random pattern generation and step-by-step difficulty escalation.",
+        "Good showcase of vanilla JavaScript and game-state logic."
+      ]
+    }
+  ]
+}
