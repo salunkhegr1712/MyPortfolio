@@ -1,0 +1,40 @@
+{
+  "categories": [
+    {
+      "name": "Backend Development",
+      "skills": [
+        { "name": "Java", "level": 90 },
+        { "name": "Spring Boot", "level": 85 },
+        { "name": "Python", "level": 80 },
+        { "name": "Node.js", "level": 75 }
+      ]
+    },
+    {
+      "name": "Big Data & Cloud",
+      "skills": [
+        { "name": "Apache Spark", "level": 85 },
+        { "name": "Databricks", "level": 80 },
+        { "name": "Azure", "level": 75 },
+        { "name": "Kafka", "level": 70 }
+      ]
+    },
+    {
+      "name": "DevOps & Tools",
+      "skills": [
+        { "name": "Docker", "level": 80 },
+        { "name": "Kubernetes", "level": 70 },
+        { "name": "Git", "level": 90 },
+        { "name": "CI/CD", "level": 75 }
+      ]
+    },
+    {
+      "name": "Frontend & Languages",
+      "skills": [
+        { "name": "TypeScript", "level": 85 },
+        { "name": "Angular", "level": 80 },
+        { "name": "SQL", "level": 85 },
+        { "name": "NoSQL", "level": 75 }
+      ]
+    }
+  ]
+}

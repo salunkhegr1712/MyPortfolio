@@ -19,6 +19,21 @@ nav a {
   }
 }
 
+/* nav polish */
+nav .rounded-full {
+  border-radius: 9999px;
+}
+
+nav .rounded-full::before,
+nav .rounded-full::after {
+  opacity: 0.08;
+}
+
+#mobile-menu .p-4 {
+  transform-origin: top center;
+  transition: transform 0.18s ease, opacity 0.18s ease;
+}
+
 // Reduced motion override
 @media (prefers-reduced-motion: reduce) {
   nav a {

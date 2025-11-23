@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { PageNotificationComponent } from './shared/page-notification/page-notification.component';
 
@@ -7,8 +7,7 @@ import { PageNotificationComponent } from './shared/page-notification/page-notif
   standalone: true,
   imports: [RouterOutlet, PageNotificationComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppComponent {
-  title = 'portfolio';
-}
+export class AppComponent {}

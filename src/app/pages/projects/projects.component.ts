@@ -1,88 +1,95 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../../shared/navbar/navbar.component';
-
-export interface Project {
-  id: string;
-  title: string;
-  summary: string;
-  tech: string[];
-  image?: string;
-  demoUrl?: string;
-  repoUrl?: string;
-}
+import { Project } from '../../models/portfolio.models';
+import { ContentService } from '../../content/content.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-projects',
   standalone: true,
   imports: [CommonModule, NavbarComponent],
   templateUrl: './projects.component.html',
-  styleUrl: './projects.component.scss'
+  styleUrls: ['./projects.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProjectsComponent {
-  @Input() projects: Project[] = [
-    {
-      id: '1',
-      title: 'Data Pipeline Orchestrator',
-      summary: 'Scalable ETL pipeline using Apache Spark and Azure Databricks',
-      tech: ['Spark', 'Azure', 'Python', 'Databricks'],
-      image: '',
-      demoUrl: 'https://example.com/demo1',
-      repoUrl: 'https://github.com/example/project1'
-    },
-    {
-      id: '2',
-      title: 'Microservices Platform',
-      summary: 'Spring Boot microservices with Kafka event streaming',
-      tech: ['Java', 'Spring Boot', 'Kafka', 'Docker'],
-      image: '',
-      demoUrl: '',
-      repoUrl: 'https://github.com/example/project2'
-    },
-    {
-      id: '3',
-      title: 'Real-time Analytics Dashboard',
-      summary: 'Real-time data visualization with streaming analytics',
-      tech: ['Angular', 'TypeScript', 'WebSocket', 'D3.js'],
-      image: '',
-      demoUrl: 'https://example.com/demo3',
-      repoUrl: 'https://github.com/example/project3'
-    }
-  ];
+  private readonly contentService = inject(ContentService);
+  private readonly cdr = inject(ChangeDetectorRef);
+  private _projects: ReadonlyArray<Project> = [];
+  private hasInputOverride = false;
+  private latestContentProjects: ReadonlyArray<Project> = [];
 
+  allTechTags: ReadonlyArray<string> = [];
+  filteredProjects: ReadonlyArray<Project> = [];
   selectedTech: string | null = null;
-  
-  // Get unique tech tags from all projects
-  get allTechTags(): string[] {
-    const techSet = new Set<string>();
-    this.projects.forEach(project => {
-      project.tech.forEach(tech => techSet.add(tech));
-    });
-    return Array.from(techSet).sort();
+
+  constructor() {
+    this.contentService
+      .getProjectsContent()
+      .pipe(takeUntilDestroyed())
+      .subscribe(({ projects }) => {
+        this.latestContentProjects = projects ?? [];
+        if (!this.hasInputOverride) {
+          this.setProjects(this.latestContentProjects);
+          this.cdr.markForCheck();
+        }
+      });
   }
 
-  // Filter projects by selected tech
-  get filteredProjects(): Project[] {
-    if (!this.selectedTech) {
-      return this.projects;
+  @Input()
+  set projects(projects: ReadonlyArray<Project> | null) {
+    if (projects && projects.length) {
+      this.hasInputOverride = true;
+      this.setProjects(projects);
+      return;
     }
-    return this.projects.filter(project => 
-      project.tech.includes(this.selectedTech!)
-    );
+
+    this.hasInputOverride = false;
+    this.setProjects(this.latestContentProjects);
   }
 
-  // Toggle tech filter
+  get projects(): ReadonlyArray<Project> {
+    return this._projects;
+  }
+
   toggleTechFilter(tech: string): void {
     this.selectedTech = this.selectedTech === tech ? null : tech;
+    this.applyFilter();
   }
 
-  // Check if tech is selected
+  clearTechFilter(): void {
+    this.selectedTech = null;
+    this.applyFilter();
+  }
+
   isTechSelected(tech: string): boolean {
     return this.selectedTech === tech;
   }
 
-  // Track by function for ngFor performance
-  trackByProjectId(index: number, project: Project): string {
+  trackByProjectId(_: number, project: Project): string {
     return project.id;
+  }
+
+  trackByTechTag(_: number, tech: string): string {
+    return tech;
+  }
+
+  private applyFilter(): void {
+    this.filteredProjects = this.selectedTech
+      ? this._projects.filter(project => project.tech.includes(this.selectedTech!))
+      : this._projects;
+  }
+
+  private computeAllTechTags(projects: ReadonlyArray<Project>): ReadonlyArray<string> {
+    const techSet = new Set<string>();
+    projects.forEach(project => project.tech.forEach(tag => techSet.add(tag)));
+    return Array.from(techSet).sort();
+  }
+
+  private setProjects(projects: ReadonlyArray<Project>): void {
+    this._projects = projects;
+    this.allTechTags = this.computeAllTechTags(projects);
+    this.applyFilter();
   }
 }

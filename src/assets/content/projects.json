@@ -1,0 +1,31 @@
+{
+  "projects": [
+    {
+      "id": "1",
+      "title": "Data Pipeline Orchestrator",
+      "summary": "Scalable ETL pipeline using Apache Spark and Azure Databricks",
+      "tech": ["Spark", "Azure", "Python", "Databricks"],
+      "image": "",
+      "demoUrl": "https://example.com/demo1",
+      "repoUrl": "https://github.com/example/project1"
+    },
+    {
+      "id": "2",
+      "title": "Microservices Platform",
+      "summary": "Spring Boot microservices with Kafka event streaming",
+      "tech": ["Java", "Spring Boot", "Kafka", "Docker"],
+      "image": "",
+      "demoUrl": "",
+      "repoUrl": "https://github.com/example/project2"
+    },
+    {
+      "id": "3",
+      "title": "Real-time Analytics Dashboard",
+      "summary": "Real-time data visualization with streaming analytics",
+      "tech": ["Angular", "TypeScript", "WebSocket", "D3.js"],
+      "image": "",
+      "demoUrl": "https://example.com/demo3",
+      "repoUrl": "https://github.com/example/project3"
+    }
+  ]
+}

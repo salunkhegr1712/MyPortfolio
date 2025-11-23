@@ -2,32 +2,32 @@ import { Injectable, TemplateRef, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 export interface PanelConfig {
-  title: string;
-  content?: TemplateRef<any> | string;
-  closable?: boolean;
-  pinnable?: boolean;
-  width?: number;
+  readonly title: string;
+  readonly content?: TemplateRef<unknown> | string;
+  readonly closable?: boolean;
+  readonly pinnable?: boolean;
+  readonly width?: number;
 }
 
 export interface PanelState {
-  id: string;
-  config: PanelConfig;
-  pinned: boolean;
-  openedAt: number;
+  readonly id: string;
+  readonly config: PanelConfig;
+  readonly pinned: boolean;
+  readonly openedAt: number;
 }
+
+const DEFAULT_MAX_PANELS = 6;
 
 @Injectable({
   providedIn: 'root'
 })
 export class StackService implements OnDestroy {
-  private readonly DEFAULT_MAX_PANELS = 6;
-  private maxPanels: number;
-  private stackSubject = new BehaviorSubject<PanelState[]>([]);
+  private maxPanels = DEFAULT_MAX_PANELS;
+  private readonly stackSubject = new BehaviorSubject<ReadonlyArray<PanelState>>([]);
+  readonly stack$ = this.stackSubject.asObservable();
   private idCounter = 0;
 
-  constructor() {
-    this.maxPanels = this.DEFAULT_MAX_PANELS;
-  }
+  constructor() {}
 
   ngOnDestroy(): void {
     this.stackSubject.complete();
@@ -46,7 +46,7 @@ export class StackService implements OnDestroy {
     };
 
     const currentStack = this.stackSubject.value;
-    let updatedStack = [newPanel, ...currentStack];
+    let updatedStack: ReadonlyArray<PanelState> = [newPanel, ...currentStack];
 
     // Enforce stack cap: remove oldest non-pinned panels if exceeding limit
     updatedStack = this.enforceStackCap(updatedStack);
@@ -59,47 +59,37 @@ export class StackService implements OnDestroy {
    * Closes a panel by ID
    */
   close(panelId: string): void {
-    const currentStack = this.stackSubject.value;
-    const updatedStack = currentStack.filter(panel => panel.id !== panelId);
-    this.stackSubject.next(updatedStack);
+    this.stackSubject.next(
+      this.stackSubject.value.filter(panel => panel.id !== panelId)
+    );
   }
 
   /**
    * Pins a panel to prevent auto-collapse
    */
   pin(panelId: string): void {
-    const currentStack = this.stackSubject.value;
-    const updatedStack = currentStack.map(panel =>
-      panel.id === panelId ? { ...panel, pinned: true } : panel
-    );
-    this.stackSubject.next(updatedStack);
+    this.stackSubject.next(this.updatePanel(panelId, { pinned: true }));
   }
 
   /**
    * Unpins a panel, making it eligible for auto-collapse
    */
   unpin(panelId: string): void {
-    const currentStack = this.stackSubject.value;
-    const updatedStack = currentStack.map(panel =>
-      panel.id === panelId ? { ...panel, pinned: false } : panel
-    );
-    
-    // Re-enforce cap after unpinning in case we're over limit
-    const cappedStack = this.enforceStackCap(updatedStack);
-    this.stackSubject.next(cappedStack);
+    const updatedStack = this.updatePanel(panelId, { pinned: false });
+    this.stackSubject.next(this.enforceStackCap(updatedStack));
   }
 
   /**
    * Returns observable of current stack (top to bottom)
    */
-  getStack(): Observable<PanelState[]> {
-    return this.stackSubject.asObservable();
+  getStack(): Observable<ReadonlyArray<PanelState>> {
+    return this.stack$;
   }
 
   /**
    * Returns current stack value (for testing)
    */
-  getCurrentStack(): PanelState[] {
+  getCurrentStack(): ReadonlyArray<PanelState> {
     return this.stackSubject.value;
   }
 
@@ -107,24 +97,41 @@ export class StackService implements OnDestroy {
    * Sets the maximum number of panels allowed in the stack
    */
   setMaxPanels(max: number): void {
-    this.maxPanels = max;
+    this.maxPanels = Math.max(1, Math.floor(max));
     const updatedStack = this.enforceStackCap(this.stackSubject.value);
     this.stackSubject.next(updatedStack);
+  }
+
+  /**
+   * Moves a panel to the top of the stack, reopening it if it exists
+   */
+  reopen(panelId: string): void {
+    const panels = this.stackSubject.value;
+    const target = panels.find(panel => panel.id === panelId);
+    if (!target) {
+      return;
+    }
+
+    const updatedStack = [{ ...target, openedAt: Date.now() }, ...panels.filter(panel => panel.id !== panelId)];
+    this.stackSubject.next(this.enforceStackCap(updatedStack));
   }
 
   /**
    * Generates a unique panel ID
    */
   private generateId(): string {
-    this.idCounter++;
-    return `panel-${Date.now()}-${this.idCounter}-${Math.random().toString(36).substr(2, 9)}`;
+    if (typeof crypto !== 'undefined' && 'randomUUID' in crypto) {
+      return crypto.randomUUID();
+    }
+    this.idCounter += 1;
+    return `panel-${Date.now()}-${this.idCounter}`;
   }
 
   /**
    * Enforces stack cap by removing oldest non-pinned panels
    * Pinned panels are always kept regardless of cap
    */
-  private enforceStackCap(stack: PanelState[]): PanelState[] {
+  private enforceStackCap(stack: ReadonlyArray<PanelState>): ReadonlyArray<PanelState> {
     if (stack.length <= this.maxPanels) {
       return stack;
     }
@@ -140,5 +147,11 @@ export class StackService implements OnDestroy {
     // Merge back: pinned panels + recent unpinned panels, maintaining original order
     const keptIds = new Set([...pinned.map(p => p.id), ...keptUnpinned.map(p => p.id)]);
     return stack.filter(p => keptIds.has(p.id));
+  }
+
+  private updatePanel(panelId: string, changes: Partial<PanelState>): ReadonlyArray<PanelState> {
+    return this.stackSubject.value.map(panel =>
+      panel.id === panelId ? { ...panel, ...changes } : panel
+    );
   }
 }

@@ -12,6 +12,8 @@
   
   // Ensure pattern stays behind content
   z-index: 0;
+  opacity: 0.06;
+  pointer-events: none;
 }
 
 // Content wrapper

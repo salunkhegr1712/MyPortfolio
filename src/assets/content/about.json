@@ -1,0 +1,40 @@
+{
+  "name": "Ghanasham Salunkhe",
+  "bio": "Experienced Backend Engineer and Data Engineer specializing in building scalable data pipelines and microservices architectures. Passionate about leveraging cloud technologies and big data frameworks to solve complex business problems.",
+  "resumePath": "/assets/resume.pdf",
+  "headshot": "",
+  "technologies": [
+    "Java",
+    "Spring Boot",
+    "Apache Spark",
+    "Databricks",
+    "Azure",
+    "Python",
+    "TypeScript",
+    "Docker",
+    "Kubernetes",
+    "Kafka"
+  ],
+  "timeline": [
+    {
+      "year": "2023 - Present",
+      "role": "Senior Data Engineer",
+      "description": "Leading data pipeline development using Spark and Azure Databricks for enterprise-scale analytics."
+    },
+    {
+      "year": "2021 - 2023",
+      "role": "Backend Engineer",
+      "description": "Designed and implemented microservices architecture using Spring Boot and event-driven patterns."
+    },
+    {
+      "year": "2019 - 2021",
+      "role": "Software Developer",
+      "description": "Developed full-stack applications and contributed to cloud migration initiatives."
+    },
+    {
+      "year": "2017 - 2019",
+      "role": "Junior Developer",
+      "description": "Started career building REST APIs and learning distributed systems fundamentals."
+    }
+  ]
+}

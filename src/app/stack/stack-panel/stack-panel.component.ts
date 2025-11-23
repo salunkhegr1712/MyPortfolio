@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, HostListener, ElementRef, AfterViewInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, EventEmitter, HostListener, Input, Output, TemplateRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PanelState } from '../stack.service';
 
@@ -7,7 +7,8 @@ import { PanelState } from '../stack.service';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './stack-panel.component.html',
-  styleUrl: './stack-panel.component.scss'
+  styleUrls: ['./stack-panel.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StackPanelComponent implements AfterViewInit {
   @Input() state!: PanelState;
@@ -16,13 +17,13 @@ export class StackPanelComponent implements AfterViewInit {
   @Output() pinToggle = new EventEmitter<{ id: string; pinned: boolean }>();
   @Output() reopen = new EventEmitter<string>();
 
-  constructor(private elementRef: ElementRef) {}
+  private readonly elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
 
   ngAfterViewInit(): void {
     // Move focus to panel header when opened (not collapsed)
     if (!this.collapsed) {
       setTimeout(() => {
-        const header = this.elementRef.nativeElement.querySelector('.panel-header');
+        const header = this.elementRef.nativeElement.querySelector<HTMLElement>('.panel-header');
         if (header) {
           header.focus();
         }
@@ -71,7 +72,7 @@ export class StackPanelComponent implements AfterViewInit {
    * Check if content is a TemplateRef
    */
   isTemplateRef(): boolean {
-    return !!this.state.config.content && typeof this.state.config.content === 'object';
+    return this.state.config.content instanceof TemplateRef;
   }
 
   /**

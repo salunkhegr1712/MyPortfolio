@@ -1,65 +1,55 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../../shared/navbar/navbar.component';
-
-export interface Skill {
-  name: string;
-  level: number; // 0-100
-}
-
-export interface SkillCategory {
-  name: string;
-  skills: Skill[];
-}
+import { SkillCategory } from '../../models/portfolio.models';
+import { ContentService } from '../../content/content.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-skills',
   standalone: true,
   imports: [CommonModule, NavbarComponent],
   templateUrl: './skills.component.html',
-  styleUrl: './skills.component.scss'
+  styleUrls: ['./skills.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SkillsComponent {
-  @Input() skills: SkillCategory[] = [
-    {
-      name: 'Backend Development',
-      skills: [
-        { name: 'Java', level: 90 },
-        { name: 'Spring Boot', level: 85 },
-        { name: 'Python', level: 80 },
-        { name: 'Node.js', level: 75 }
-      ]
-    },
-    {
-      name: 'Big Data & Cloud',
-      skills: [
-        { name: 'Apache Spark', level: 85 },
-        { name: 'Databricks', level: 80 },
-        { name: 'Azure', level: 75 },
-        { name: 'Kafka', level: 70 }
-      ]
-    },
-    {
-      name: 'DevOps & Tools',
-      skills: [
-        { name: 'Docker', level: 80 },
-        { name: 'Kubernetes', level: 70 },
-        { name: 'Git', level: 90 },
-        { name: 'CI/CD', level: 75 }
-      ]
-    },
-    {
-      name: 'Frontend & Languages',
-      skills: [
-        { name: 'TypeScript', level: 85 },
-        { name: 'Angular', level: 80 },
-        { name: 'SQL', level: 85 },
-        { name: 'NoSQL', level: 75 }
-      ]
-    }
-  ];
+  private readonly contentService = inject(ContentService);
+  private readonly cdr = inject(ChangeDetectorRef);
+  private _skills: ReadonlyArray<SkillCategory> = [];
+  private hasInputOverride = false;
+  private latestContentSkills: ReadonlyArray<SkillCategory> = [];
 
   selectedCategory: string | null = null;
+
+  constructor() {
+    this.contentService
+      .getSkillsContent()
+      .pipe(takeUntilDestroyed())
+      .subscribe(({ categories }) => {
+        this.latestContentSkills = categories ?? [];
+        if (!this.hasInputOverride) {
+          this.setSkills(this.latestContentSkills);
+          this.cdr.markForCheck();
+        }
+      });
+  }
+
+  @Input()
+  set skills(value: ReadonlyArray<SkillCategory> | null) {
+    if (value && value.length) {
+      this.hasInputOverride = true;
+      this.setSkills(value);
+      return;
+    }
+
+    this.hasInputOverride = false;
+    this.setSkills(this.latestContentSkills);
+  }
+
+  get skills(): ReadonlyArray<SkillCategory> {
+    return this._skills;
+  }
 
   // Select a category
   selectCategory(categoryName: string): void {
@@ -91,7 +81,11 @@ export class SkillsComponent {
     return category.name;
   }
 
-  trackBySkillName(index: number, skill: Skill): string {
+  trackBySkillName(index: number, skill: SkillCategory['skills'][number]): string {
     return skill.name;
+  }
+
+  private setSkills(skills: ReadonlyArray<SkillCategory>): void {
+    this._skills = skills;
   }
 }
