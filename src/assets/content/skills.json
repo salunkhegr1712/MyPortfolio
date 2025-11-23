@@ -1,39 +1,97 @@
 {
   "categories": [
     {
-      "name": "Backend Development",
+      "name": "Backend Engineering",
       "skills": [
         { "name": "Java", "level": 90 },
         { "name": "Spring Boot", "level": 85 },
-        { "name": "Python", "level": 80 },
-        { "name": "Node.js", "level": 75 }
+        { "name": "Spring MVC / Spring Cloud", "level": 80 },
+        { "name": "RESTful API Design", "level": 90 },
+        { "name": "Microservices Architecture", "level": 85 },
+        { "name": "Hibernate / JPA", "level": 80 },
+        { "name": "API Gateway Patterns", "level": 70 }
       ]
     },
     {
-      "name": "Big Data & Cloud",
+      "name": "Big Data & Distributed Systems",
       "skills": [
-        { "name": "Apache Spark", "level": 85 },
+        { "name": "Apache Spark (Core/SQL/Streaming)", "level": 85 },
+        { "name": "PySpark", "level": 80 },
         { "name": "Databricks", "level": 80 },
-        { "name": "Azure", "level": 75 },
-        { "name": "Kafka", "level": 70 }
+        { "name": "Azure Data Lake", "level": 80 },
+        { "name": "Delta Lake", "level": 80 },
+        { "name": "Medallion Architecture", "level": 75 },
+        { "name": "ETL / ELT Pipelines", "level": 85 },
+        { "name": "Kafka / Azure Event Hubs", "level": 75 },
+        { "name": "Hadoop", "level": 70 },
+        { "name": "Data Governance & Quality Checks", "level": 70 },
+        { "name": "Data Modeling & Lakehouse Design", "level": 75 }
       ]
     },
     {
-      "name": "DevOps & Tools",
+      "name": "Cloud & DevOps",
       "skills": [
+        { "name": "Microsoft Azure", "level": 80 },
+        { "name": "Azure Kubernetes Service (AKS)", "level": 70 },
         { "name": "Docker", "level": 80 },
-        { "name": "Kubernetes", "level": 70 },
-        { "name": "Git", "level": 90 },
-        { "name": "CI/CD", "level": 75 }
+        { "name": "Jenkins CI/CD", "level": 75 },
+        { "name": "SonarQube", "level": 70 },
+        { "name": "Linux & Shell Scripting", "level": 85 },
+        { "name": "Monitoring: Azure Monitor / ELK / Grafana", "level": 75 },
+        { "name": "Infrastructure-as-Code (IaC) Basics", "level": 60 },
+        { "name": "Cloud Security & Access Governance", "level": 70 }
       ]
     },
     {
-      "name": "Frontend & Languages",
+      "name": "Databases",
       "skills": [
-        { "name": "TypeScript", "level": 85 },
-        { "name": "Angular", "level": 80 },
+        { "name": "MySQL", "level": 85 },
+        { "name": "PostgreSQL", "level": 80 },
+        { "name": "MongoDB", "level": 70 },
+        { "name": "Query Optimization", "level": 75 }
+      ]
+    },
+    {
+      "name": "Programming & Frontend",
+      "skills": [
+        { "name": "Python", "level": 75 },
         { "name": "SQL", "level": 85 },
-        { "name": "NoSQL", "level": 75 }
+        { "name": "TypeScript", "level": 80 },
+        { "name": "JavaScript", "level": 70 },
+        { "name": "Angular", "level": 75 },
+        { "name": "React", "level": 65 }
+      ]
+    },
+    {
+      "name": "Testing, Tools & Automation",
+      "skills": [
+        { "name": "JUnit / Mockito", "level": 80 },
+        { "name": "Postman", "level": 85 },
+        { "name": "Maven", "level": 80 },
+        { "name": "Git", "level": 90 },
+        { "name": "IntelliJ IDEA", "level": 85 },
+        { "name": "GitHub Copilot", "level": 80 },
+        { "name": "CI/CD Pipelines", "level": 75 }
+      ]
+    },
+    {
+      "name": "Architecture & Design",
+      "skills": [
+        { "name": "Distributed System Design", "level": 80 },
+        { "name": "Event-Driven Architecture", "level": 75 },
+        { "name": "Scalable Pipeline Design", "level": 80 },
+        { "name": "System Performance Optimization", "level": 75 },
+        { "name": "Design Patterns", "level": 75 }
+      ]
+    },
+    {
+      "name": "Professional Skills",
+      "skills": [
+        { "name": "System Ownership", "level": 85 },
+        { "name": "Production Troubleshooting", "level": 80 },
+        { "name": "Cross-Team Collaboration", "level": 75 },
+        { "name": "Agile / Scrum", "level": 70 },
+        { "name": "Technical Documentation", "level": 80 }
       ]
     }
   ]

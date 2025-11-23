@@ -27,5 +27,15 @@ export const routes = [
     loadComponent: () => import('./pages/contact/contact.component').then(m => m.ContactComponent),
     title: 'Contact | Ghanasham Salunkhe'
   },
+  {
+    path: 'blogs',
+    loadComponent: () => import('./pages/blogs/blogs.component').then(m => m.BlogsComponent),
+    title: 'Blog | Ghanasham Salunkhe'
+  },
+  {
+    path: 'blogs/:id',
+    loadComponent: () => import('./pages/blog-detail/blog-detail.component').then(m => m.BlogDetailComponent),
+    title: 'Blog Post | Ghanasham Salunkhe'
+  },
   { path: '**', redirectTo: 'home' }
 ] satisfies Routes;

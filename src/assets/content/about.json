@@ -1,40 +1,62 @@
 {
   "name": "Ghanasham Salunkhe",
-  "bio": "Experienced Backend Engineer and Data Engineer specializing in building scalable data pipelines and microservices architectures. Passionate about leveraging cloud technologies and big data frameworks to solve complex business problems.",
-  "resumePath": "/assets/resume.pdf",
-  "headshot": "",
+  "bio": "Backend Engineer and Data Engineer with strong experience in Java, Spring Boot, Apache Spark, Databricks, and Azure. Focused on building scalable data workflows, reliable microservices, and cloud-native architectures.",
+  "resumePath": "https://drive.usercontent.google.com/uc?id=11fPVT3xreK7BYEglpTNiUj_lyinm7YEc&export=download",
+  "headshot": "https://lh3.googleusercontent.com/a/ACg8ocIIY_f3kX_oQi4jXUHUkxJyZEdRZ-zBTevfZy5cKkVDTSbZ4IY4Og=s288-c-no",
   "technologies": [
     "Java",
     "Spring Boot",
     "Apache Spark",
     "Databricks",
-    "Azure",
+    "Azure Data Lake",
+    "Delta Lake",
     "Python",
     "TypeScript",
+    "Angular",
     "Docker",
     "Kubernetes",
-    "Kafka"
+    "Kafka",
+    "Hadoop",
+    "CI/CD",
+    "REST APIs"
   ],
   "timeline": [
     {
-      "year": "2023 - Present",
-      "role": "Senior Data Engineer",
-      "description": "Leading data pipeline development using Spark and Azure Databricks for enterprise-scale analytics."
-    },
+      "year": "June/2023 - Present",
+      "role": "Software Engineer",
+      "description": "Working as a full-time Software Engineer with focus on backend systems, data engineering pipelines, microservices, and distributed processing using Java, Spring Boot, Apache Spark, Databricks, Kafka, and Azure."
+    }
+  ],
+  "education": [
     {
-      "year": "2021 - 2023",
-      "role": "Backend Engineer",
-      "description": "Designed and implemented microservices architecture using Spring Boot and event-driven patterns."
-    },
-    {
-      "year": "2019 - 2021",
-      "role": "Software Developer",
-      "description": "Developed full-stack applications and contributed to cloud migration initiatives."
+      "year": "2019 - 2023",
+      "degree": "B. Tech in Computer Engineering",
+      "institution": "COEP Technological University, Pune (Former College of Engineering, Pune)",
+      "score": "6.75 CGPA"
     },
     {
       "year": "2017 - 2019",
-      "role": "Junior Developer",
-      "description": "Started career building REST APIs and learning distributed systems fundamentals."
+      "degree": "Higher Secondary Certificate (HSC)",
+      "institution": "Maharashtra State Board",
+      "score": "79.69%"
+    },
+    {
+      "year": "2016 - 2017",
+      "degree": "Secondary School Certificate (SSC)",
+      "institution": "Maharashtra State Board",
+      "score": "90.40%"
+    }
+  ],
+  "competitiveExams": [
+    {
+      "exam": "MHT-CET (AIR - 100)",
+      "year": "2019",
+      "percentile": "99.99445"
+    },
+    {
+      "exam": "JEE Mains",
+      "year": "2019",
+      "percentile": "96.6337"
     }
   ]
 }

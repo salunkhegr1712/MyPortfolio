@@ -13,6 +13,7 @@ import { RouterModule } from '@angular/router';
 export class NavbarComponent {
   readonly navLinks = [
     { label: 'Home', route: '/home' },
+    { label: 'Blog', route: '/blogs' },
     { label: 'Projects', route: '/projects' },
     { label: 'Skills', route: '/skills' },
     { label: 'About', route: '/about' },

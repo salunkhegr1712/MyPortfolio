@@ -1,9 +1,9 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, inject, computed, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../../shared/navbar/navbar.component';
-import { TimelineEntry } from '../../models/portfolio.models';
+import { CompetitiveExamResult, EducationEntry, TimelineEntry } from '../../models/portfolio.models';
 import { ContentService } from '../../content/content.service';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-about',
@@ -15,89 +15,94 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 })
 export class AboutComponent {
   private readonly contentService = inject(ContentService);
-  private readonly cdr = inject(ChangeDetectorRef);
 
-  private nameOverride = false;
-  private bioOverride = false;
-  private resumeOverride = false;
-  private headshotOverride = false;
-
-  private _name = '';
-  private _bio = '';
-  private _resumePath = '';
-  private _headshot = '';
-
-  technologies: ReadonlyArray<string> = [];
-  timeline: ReadonlyArray<TimelineEntry> = [];
+  readonly aboutContent = toSignal(this.contentService.getAboutContent(), {
+    initialValue: undefined
+  });
 
   constructor() {
-    this.contentService
-      .getAboutContent()
-      .pipe(takeUntilDestroyed())
-      .subscribe((content) => {
-        if (!this.nameOverride) {
-          this._name = content.name;
-        }
-        if (!this.bioOverride) {
-          this._bio = content.bio;
-        }
-        if (!this.resumeOverride) {
-          this._resumePath = content.resumePath;
-        }
-        if (!this.headshotOverride) {
-          this._headshot = content.headshot;
-        }
+    // Debug: Check if data is loading
+    setTimeout(() => {
+      console.log('About Content:', this.aboutContent());
+      console.log('Name:', this.name());
+      console.log('Bio:', this.bio());
+    }, 1000);
+  }
 
-        this.technologies = content.technologies ?? [];
-        this.timeline = content.timeline ?? [];
-        this.cdr.markForCheck();
-      });
+  private readonly nameOverride = signal<string | null>(null);
+  private readonly bioOverride = signal<string | null>(null);
+  private readonly resumePathOverride = signal<string | null>(null);
+  private readonly headshotOverride = signal<string | null>(null);
+
+  readonly name = computed(() => {
+    const override = this.nameOverride();
+    if (override) return override;
+    const content = this.aboutContent();
+    return content?.name ?? '';
+  });
+  
+  readonly bio = computed(() => {
+    const override = this.bioOverride();
+    if (override) return override;
+    const content = this.aboutContent();
+    return content?.bio ?? '';
+  });
+  
+  readonly resumePath = computed(() => {
+    const override = this.resumePathOverride();
+    if (override) return override;
+    const content = this.aboutContent();
+    return content?.resumePath ?? '';
+  });
+  
+  readonly headshot = computed(() => {
+    const override = this.headshotOverride();
+    if (override) return override;
+    const content = this.aboutContent();
+    return content?.headshot ?? '';
+  });
+
+  @Input()
+  set nameInput(value: string) {
+    this.nameOverride.set(value ?? '');
   }
 
   @Input()
-  set name(value: string) {
-    this.nameOverride = true;
-    this._name = value ?? '';
-  }
-
-  get name(): string {
-    return this._name;
+  set bioInput(value: string) {
+    this.bioOverride.set(value ?? '');
   }
 
   @Input()
-  set bio(value: string) {
-    this.bioOverride = true;
-    this._bio = value ?? '';
-  }
-
-  get bio(): string {
-    return this._bio;
+  set resumePathInput(value: string) {
+    this.resumePathOverride.set(value ?? '');
   }
 
   @Input()
-  set resumePath(value: string) {
-    this.resumeOverride = true;
-    this._resumePath = value ?? '';
+  set headshotInput(value: string) {
+    this.headshotOverride.set(value ?? '');
   }
 
-  get resumePath(): string {
-    return this._resumePath;
-  }
+  readonly hasResume = computed(() => Boolean(this.resumePath()));
 
-  @Input()
-  set headshot(value: string) {
-    this.headshotOverride = true;
-    this._headshot = value ?? '';
-  }
-
-  get headshot(): string {
-    return this._headshot;
-  }
-
-  // Check if resume file exists (simplified check)
-  get hasResume(): boolean {
-    return Boolean(this._resumePath);
-  }
+  readonly technologies = computed(() => {
+    const content = this.aboutContent();
+    return content?.technologies ?? [];
+  });
+  
+  readonly timeline = computed(() => {
+    const content = this.aboutContent();
+    return content?.timeline ?? [];
+  });
+  
+  readonly education = computed(() => {
+    const content = this.aboutContent();
+    return content?.education ?? [];
+  });
+  
+  readonly competitiveExams = computed(() => {
+    const content = this.aboutContent();
+    return content?.competitiveExams ?? [];
+  });
 
   // Scroll to contact section
   scrollToContact(): void {
@@ -118,5 +123,13 @@ export class AboutComponent {
 
   trackByTech(index: number, tech: string): string {
     return tech;
+  }
+
+  trackByEducation(index: number, entry: EducationEntry): string {
+    return `${entry.year}-${entry.degree}`;
+  }
+
+  trackByExam(index: number, exam: CompetitiveExamResult): string {
+    return `${exam.exam}-${exam.year}`;
   }
 }

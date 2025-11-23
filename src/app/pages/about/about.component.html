@@ -11,13 +11,13 @@
         <div class="headshot-container flex-shrink-0">
           <div class="w-32 h-32 md:w-40 md:h-40 rounded-full bg-gray-700 overflow-hidden border-4 border-blue-500">
             <img
-              *ngIf="headshot"
-              [src]="headshot"
-              [alt]="name + ' photo'"
+              *ngIf="headshot()"
+              [src]="headshot()"
+              [alt]="name() + ' photo'"
               class="w-full h-full object-cover">
             
             <!-- Fallback icon if no headshot -->
-            <div *ngIf="!headshot" class="w-full h-full flex items-center justify-center text-gray-500">
+            <div *ngIf="!headshot()" class="w-full h-full flex items-center justify-center text-gray-500">
               <svg class="w-20 h-20" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
               </svg>
@@ -27,17 +27,24 @@
 
         <!-- Bio -->
         <div class="flex-1 text-center md:text-left">
-          <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">{{ name }}</h1>
-          <p class="text-lg text-gray-300 leading-relaxed mb-6">{{ bio }}</p>
+          <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+            {{ name() || 'Loading...' }}
+          </h1>
+          <p class="text-lg text-gray-300 leading-relaxed mb-6">
+            {{ bio() || 'Loading profile information...' }}
+          </p>
           
           <!-- CTA Buttons -->
           <div class="flex flex-wrap gap-5">
             <a
-              *ngIf="hasResume"
-              [href]="resumePath"
+              *ngIf="resumePath()"
+              [href]="resumePath()"
               download
               class="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900"
               aria-label="Download resume PDF">
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+              </svg>
               Download Resume
             </a>
           </div>
@@ -50,7 +57,7 @@
       <h2 class="text-2xl font-bold text-white mb-6">Core Technologies</h2>
       <div class="flex flex-wrap gap-3">
         <span
-          *ngFor="let tech of technologies; trackBy: trackByTech"
+          *ngFor="let tech of technologies(); trackBy: trackByTech"
           class="inline-block px-4 py-2 bg-gray-800 border border-gray-700 text-gray-300 rounded-lg text-sm font-medium">
           {{ tech }}
         </span>
@@ -58,7 +65,7 @@
     </section>
 
     <!-- Timeline Section -->
-    <section class="timeline-section">
+    <section class="timeline-section" *ngIf="timeline().length">
       <h2 class="text-2xl font-bold text-white mb-8">Professional Journey</h2>
       
       <div class="timeline-container relative">
@@ -67,7 +74,7 @@
 
         <div class="space-y-8">
           <article
-            *ngFor="let entry of timeline; trackBy: trackByYear"
+            *ngFor="let entry of timeline(); trackBy: trackByYear"
             class="timeline-entry relative pl-8 md:pl-12">
             
             <!-- Timeline dot -->
@@ -77,11 +84,62 @@
               <time class="text-sm text-blue-400 font-semibold" [attr.datetime]="entry.year">
                 {{ entry.year }}
               </time>
-              <h3 class="text-xl font-bold text-white mt-2 mb-3">{{ entry.role }}</h3>
-              <p class="text-gray-300 leading-relaxed">{{ entry.description }}</p>
+              <h3 *ngIf="entry.role || entry.degree" class="text-xl font-bold text-white mt-2" [class.mb-1]="entry.institution || entry.description">
+                {{ entry.role || entry.degree }}
+              </h3>
+              <p *ngIf="entry.institution" class="text-sm text-slate-400 mb-3">
+                {{ entry.institution }}
+              </p>
+              <p *ngIf="entry.description" class="text-gray-300 leading-relaxed">
+                {{ entry.description }}
+              </p>
             </div>
           </article>
         </div>
+      </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="education-section mt-16" *ngIf="education().length">
+      <h2 class="text-2xl font-bold text-white mb-8">Education</h2>
+
+      <div class="space-y-6">
+        <article
+          *ngFor="let edu of education(); trackBy: trackByEducation"
+          class="bg-gray-900/60 border border-gray-800 rounded-xl p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <div>
+            <p class="text-sm text-blue-400 font-semibold mb-1">{{ edu.year }}</p>
+            <h3 class="text-lg font-bold text-white">{{ edu.degree }}</h3>
+            <p class="text-slate-300">{{ edu.institution }}</p>
+            <p *ngIf="edu.description" class="text-sm text-slate-400 mt-2">{{ edu.description }}</p>
+          </div>
+          <div *ngIf="edu.score" class="text-right">
+            <span class="inline-flex px-4 py-2 rounded-full bg-slate-800 text-slate-100 text-sm font-semibold">
+              {{ edu.score }}
+            </span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Competitive Exams -->
+    <section class="exams-section mt-16" *ngIf="competitiveExams().length">
+      <h2 class="text-2xl font-bold text-white mb-8">Competitive Exams</h2>
+      <div class="grid gap-6 md:grid-cols-2">
+        <article
+          *ngFor="let exam of competitiveExams(); trackBy: trackByExam"
+          class="bg-gray-900/70 border border-gray-800 rounded-xl p-5 shadow-lg shadow-blue-950/20">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-lg font-semibold text-white">{{ exam.exam }}</h3>
+            <span class="text-sm text-blue-400 font-medium">{{ exam.year }}</span>
+          </div>
+          <p *ngIf="exam.percentile" class="text-slate-100 text-sm">
+            Percentile: <span class="font-semibold">{{ exam.percentile }}</span>
+          </p>
+          <p *ngIf="exam.score" class="text-slate-100 text-sm">
+            Score: <span class="font-semibold">{{ exam.score }}</span>
+          </p>
+        </article>
       </div>
     </section>
 

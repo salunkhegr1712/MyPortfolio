@@ -1,0 +1,80 @@
+/* Code block styling */
+.blog-body ::ng-deep .code-block {
+  margin: 2rem 0;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+.blog-body ::ng-deep pre {
+  line-height: 1.7;
+  tab-size: 4;
+  font-size: 0.875rem;
+  letter-spacing: 0.025em;
+}
+
+.blog-body ::ng-deep pre code {
+  display: block;
+  white-space: pre;
+  overflow-x: auto;
+  padding: 0;
+  background: transparent;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.blog-body ::ng-deep code {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-feature-settings: 'liga' 1, 'calt' 1;
+}
+
+/* Copy button styling */
+.blog-body ::ng-deep .copy-btn {
+  cursor: pointer;
+  user-select: none;
+}
+
+.blog-body ::ng-deep .copy-btn:active {
+  transform: scale(0.95);
+}
+
+/* Smooth scrollbar for code blocks */
+.blog-body ::ng-deep pre::-webkit-scrollbar {
+  height: 10px;
+}
+
+.blog-body ::ng-deep pre::-webkit-scrollbar-track {
+  background: #0f172a;
+  border-radius: 0 0 0.5rem 0.5rem;
+}
+
+.blog-body ::ng-deep pre::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 0.25rem;
+}
+
+.blog-body ::ng-deep pre::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 640px) {
+  .blog-body ::ng-deep .code-block {
+    margin: 1.5rem -1rem;
+    border-radius: 0;
+  }
+  
+  .blog-body ::ng-deep pre {
+    border-radius: 0;
+    font-size: 0.75rem;
+    padding: 1rem;
+  }
+}
+
+/* Inline code styling */
+.blog-body ::ng-deep code:not(pre code) {
+  background: #1e293b;
+  color: #7dd3fc;
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.25rem;
+  font-size: 0.875em;
+  border: 1px solid #334155;
+}

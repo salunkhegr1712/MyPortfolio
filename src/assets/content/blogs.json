@@ -1,0 +1,37 @@
+{
+  "blogs": [
+    {
+      "id": "getting-started-with-spring-boot",
+      "title": "Getting Started with Spring Boot Microservices",
+      "summary": "Learn how to build production-ready microservices using Spring Boot, Spring Cloud, and best practices for scalable architecture.",
+      "content": "Spring Boot has revolutionized the way we build Java applications. In this comprehensive guide, we'll explore how to create robust microservices that can scale to handle millions of requests.\n\n## Why Spring Boot?\n\nSpring Boot simplifies the bootstrapping and development of Spring applications. It provides:\n\n- Auto-configuration for quick setup\n- Embedded servers (Tomcat, Jetty, Undertow)\n- Production-ready features like metrics and health checks\n- Minimal XML configuration\n\n## Building Your First Microservice\n\nLet's start by creating a simple REST API. First, we'll need to set up our project dependencies:\n\n```java\n@SpringBootApplication\npublic class UserServiceApplication {\n    public static void main(String[] args) {\n        SpringApplication.run(UserServiceApplication.class, args);\n    }\n}\n```\n\n## Key Design Patterns\n\nWhen building microservices, consider these essential patterns:\n\n1. **API Gateway Pattern** - Single entry point for all clients\n2. **Circuit Breaker** - Prevent cascading failures\n3. **Service Discovery** - Dynamic service registration\n4. **Configuration Management** - Centralized configuration\n\n## Best Practices\n\n- Keep services small and focused\n- Implement proper error handling\n- Use asynchronous communication when possible\n- Monitor everything with metrics\n- Document your APIs with Swagger/OpenAPI\n\n## Conclusion\n\nSpring Boot makes it easier than ever to build enterprise-grade microservices. By following these patterns and best practices, you can create systems that are resilient, scalable, and maintainable.",
+      "author": "Ghanasham Salunkhe",
+      "date": "2025-01-15",
+      "image": "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&h=450&fit=crop",
+      "tags": ["Spring Boot", "Java", "Microservices", "Backend"],
+      "readTime": 8
+    },
+    {
+      "id": "apache-spark-data-processing",
+      "title": "Large-Scale Data Processing with Apache Spark",
+      "summary": "Discover how to process terabytes of data efficiently using Apache Spark, Databricks, and Azure Data Lake.",
+      "content": "In today's data-driven world, processing large volumes of data quickly and efficiently is crucial. Apache Spark has become the de facto standard for big data processing.\n\n## What is Apache Spark?\n\nApache Spark is a unified analytics engine for large-scale data processing. It provides:\n\n- In-memory computation for speed\n- Support for multiple languages (Scala, Python, Java, R)\n- Rich APIs for batch and streaming data\n- Integration with popular data sources\n\n## Setting Up Your Environment\n\nWhen working with Azure Databricks, your environment setup is straightforward:\n\n```python\nfrom pyspark.sql import SparkSession\n\nspark = SparkSession.builder \\\n    .appName(\"DataProcessing\") \\\n    .config(\"spark.sql.adaptive.enabled\", \"true\") \\\n    .getOrCreate()\n```\n\n## Data Processing Pipeline\n\nA typical data pipeline consists of:\n\n1. **Ingestion** - Read from various sources (ADLS, Kafka, Event Hubs)\n2. **Transformation** - Clean, enrich, and aggregate data\n3. **Quality Checks** - Validate data integrity\n4. **Storage** - Write to optimized formats (Delta Lake, Parquet)\n\n## Optimization Techniques\n\n### Partitioning Strategy\nProper partitioning can dramatically improve query performance:\n\n```python\ndf.write \\\n    .partitionBy(\"year\", \"month\") \\\n    .format(\"delta\") \\\n    .save(\"/mnt/data/processed\")\n```\n\n### Caching\nCache intermediate results for iterative algorithms:\n\n```python\ndf_filtered = df.filter(col(\"status\") == \"active\")\ndf_filtered.cache()\n```\n\n## Real-World Use Cases\n\n- ETL pipelines processing 100+ GB daily\n- Real-time analytics with structured streaming\n- Machine learning feature engineering\n- Log analysis and monitoring\n\n## Conclusion\n\nApache Spark combined with cloud platforms like Azure provides a powerful solution for big data challenges. Master these concepts to build efficient, scalable data pipelines.",
+      "author": "Ghanasham Salunkhe",
+      "date": "2025-02-20",
+      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=450&fit=crop",
+      "tags": ["Apache Spark", "Big Data", "Azure", "Data Engineering"],
+      "readTime": 10
+    },
+    {
+      "id": "event-driven-architecture-kafka",
+      "title": "Building Event-Driven Systems with Kafka",
+      "summary": "Explore event-driven architecture patterns using Apache Kafka and Azure Event Hubs for real-time data streaming.",
+      "content": "Event-driven architecture has become essential for building modern, scalable applications. Let's explore how to leverage Apache Kafka and Azure Event Hubs.\n\n## Understanding Event-Driven Architecture\n\nEvent-driven systems react to events as they occur, enabling:\n\n- Real-time processing\n- Loose coupling between services\n- Better scalability\n- Improved resilience\n\n## Apache Kafka Fundamentals\n\nKafka is a distributed streaming platform that:\n\n- Handles trillions of events per day\n- Provides durable message storage\n- Scales horizontally\n- Guarantees message ordering within partitions\n\n## Producer Pattern\n\n```java\nProperties props = new Properties();\nprops.put(\"bootstrap.servers\", \"localhost:9092\");\nprops.put(\"key.serializer\", \"org.apache.kafka.common.serialization.StringSerializer\");\nprops.put(\"value.serializer\", \"org.apache.kafka.common.serialization.StringSerializer\");\n\nProducer<String, String> producer = new KafkaProducer<>(props);\nproducer.send(new ProducerRecord<>(\"events\", \"key\", \"value\"));\n```\n\n## Consumer Groups\n\nConsumer groups allow parallel processing:\n\n- Each partition is consumed by one consumer in the group\n- Automatic rebalancing on failures\n- Offset management for exactly-once semantics\n\n## Azure Event Hubs Integration\n\nEvent Hubs provides Kafka protocol support:\n\n- Managed service with no operational overhead\n- Built-in security and compliance\n- Seamless Azure ecosystem integration\n- Auto-inflate for dynamic scaling\n\n## Best Practices\n\n1. **Idempotency** - Design consumers to handle duplicate messages\n2. **Schema Evolution** - Use Avro or Protobuf for backward compatibility\n3. **Monitoring** - Track lag, throughput, and error rates\n4. **Partitioning** - Choose partition keys carefully for even distribution\n\n## Use Cases at Scale\n\n- Real-time fraud detection\n- Click stream analysis\n- IoT sensor data processing\n- Microservices communication\n\n## Conclusion\n\nEvent-driven architecture with Kafka enables building systems that can handle massive scale while maintaining flexibility and resilience.",
+      "author": "Ghanasham Salunkhe",
+      "date": "2025-03-10",
+      "image": "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=450&fit=crop",
+      "tags": ["Kafka", "Event Hubs", "Azure", "Distributed Systems"],
+      "readTime": 12
+    }
+  ]
+}

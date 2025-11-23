@@ -3,7 +3,7 @@
     class="relative bg-slate-900/20 backdrop-blur-md rounded-full border border-white/15 shadow-lg shadow-black/40
            px-3 sm:px-6 py-1.5 sm:py-1.5">
 
-    <div class="relative z-10 flex items-center justify-between gap-2 sm:gap-5">
+    <div class="relative z-10 flex items-center justify-between gap-2 sm:gap-3">
       <!-- mobile hamburger -->
       <button
         type="button"
@@ -18,7 +18,7 @@
       </button>
 
       <!-- Navigation Links -->
-      <ul class="hidden sm:flex items-center gap-2 sm:gap-4" role="menubar">
+      <ul class="hidden sm:flex items-center gap-3 sm:gap-3" role="menubar">
         <li role="none" *ngFor="let link of navLinks">
           <a 
             [routerLink]="link.route"
@@ -40,7 +40,7 @@
     <div class="fixed inset-0 z-40 bg-black/70 backdrop-blur-md" (click)="closeMobileMenu()"></div>
     <div class="fixed inset-x-0 top-16 z-50 flex justify-center px-4">
       <div class="w-full max-w-md bg-black/80 rounded-lg p-4" (click)="$event.stopPropagation()">
-        <ul class="flex flex-col gap-3">
+        <ul class="flex flex-col gap-2">
           <li role="none" *ngFor="let link of navLinks">
             <a
               [routerLink]="link.route"

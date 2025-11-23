@@ -1,0 +1,34 @@
+{
+  "blogs": [
+    {
+      "id": "getting-started-with-spring-boot",
+      "title": "Getting Started with Spring Boot Microservices",
+      "summary": "Learn how to build production-ready microservices using Spring Boot, Spring Cloud, and best practices for scalable architecture.",
+      "author": "Ghanasham Salunkhe",
+      "date": "2025-01-15",
+      "image": "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&h=450&fit=crop",
+      "tags": ["Spring Boot", "Java", "Microservices", "Backend"],
+      "readTime": 8
+    },
+    {
+      "id": "apache-spark-data-processing",
+      "title": "Large-Scale Data Processing with Apache Spark",
+      "summary": "Discover how to process terabytes of data efficiently using Apache Spark, Databricks, and Azure Data Lake.",
+      "author": "Ghanasham Salunkhe",
+      "date": "2025-02-20",
+      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=450&fit=crop",
+      "tags": ["Apache Spark", "Big Data", "Azure", "Data Engineering"],
+      "readTime": 10
+    },
+    {
+      "id": "event-driven-architecture-kafka",
+      "title": "Building Event-Driven Systems with Kafka",
+      "summary": "Explore event-driven architecture patterns using Apache Kafka and Azure Event Hubs for real-time data streaming.",
+      "author": "Ghanasham Salunkhe",
+      "date": "2025-03-10",
+      "image": "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=450&fit=crop",
+      "tags": ["Kafka", "Event Hubs", "Azure", "Distributed Systems"],
+      "readTime": 12
+    }
+  ]
+}
