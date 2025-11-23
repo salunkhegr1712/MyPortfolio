@@ -5,6 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:prod": "ng build --configuration production --base-href /MyPortfolio/",
+    "deploy": "npm run build:prod && npx angular-cli-ghpages --dir=dist/portfolio",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -32,6 +34,7 @@
     "@angular/compiler-cli": "^18.2.0",
     "@tailwindcss/typography": "^0.5.19",
     "@types/jasmine": "~5.1.0",
+    "angular-cli-ghpages": "^2.0.3",
     "autoprefixer": "^10.4.22",
     "jasmine-core": "~5.2.0",
     "karma": "~6.4.0",
