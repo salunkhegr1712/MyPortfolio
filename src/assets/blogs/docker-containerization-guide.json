@@ -1,0 +1,16 @@
+{
+  "id": "docker-containerization-guide",
+  "title": "Docker Containerization Complete Guide",
+  "summary": "Learn Docker fundamentals, Dockerfile optimization, multi-stage builds, Docker Compose, and container orchestration basics.",
+  "author": "Ghanasham Salunkhe",
+  "date": "2025-04-20",
+  "image": "https://images.unsplash.com/photo-1605745341112-85968b19335b?w=800&h=450&fit=crop",
+  "tags": [
+    "Docker",
+    "Containerization",
+    "DevOps",
+    "Deployment"
+  ],
+  "readTime": 12,
+  "content": "## Introduction\n\nDocker has revolutionized software deployment by allowing developers to package applications and their dependencies into containers. This ensures consistency across different environments.\n\n## What is Docker?\n\nDocker is a platform for developing, shipping, and running applications. It separates your applications from your infrastructure so you can deliver software quickly.\n\n## Dockerfile Basics\n\nA Dockerfile is a text document that contains all the commands a user could call on the command line to assemble an image.\n\n```dockerfile\nFROM node:14\nWORKDIR /app\nCOPY package*.json ./\nRUN npm install\nCOPY . .\nCMD [\"npm\", \"start\"]\n```\n\n## Docker Compose\n\nDocker Compose is a tool for defining and running multi-container Docker applications. You use a YAML file to configure your application's services.\n\n## Conclusion\n\nDocker simplifies the deployment process and enables microservices architecture. Mastering Docker is a key skill for modern DevOps and software engineering."
+}

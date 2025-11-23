@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, signal, AfterViewInit, PLATFORM_ID, Inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal, AfterViewInit, PLATFORM_ID, Inject, HostListener } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { NavbarComponent } from '../../shared/navbar/navbar.component';
@@ -40,9 +40,7 @@ export class BlogDetailComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      this.setupCopyFunction();
-    }
+    // No initialization needed for copy function as we use event delegation
   }
 
   private loadBlog(blogId: string): void {
@@ -64,37 +62,55 @@ export class BlogDetailComponent implements AfterViewInit {
     this.router.navigate(['/blogs']);
   }
 
-  private setupCopyFunction(): void {
-    (window as any).copyCode = (codeId: string) => {
-      const codeElement = document.getElementById(codeId);
-      if (!codeElement) return;
+  @HostListener('click', ['$event'])
+  onClick(event: MouseEvent): void {
+    const target = event.target as HTMLElement;
+    const button = target.closest('.copy-btn') as HTMLElement;
+    
+    if (button) {
+      const codeId = button.getAttribute('data-target-id');
+      if (codeId) {
+        this.copyCode(codeId, button);
+      }
+    }
+  }
 
-      const rawCode = codeElement.getAttribute('data-raw');
-      if (!rawCode) return;
+  private copyCode(codeId: string, button: HTMLElement): void {
+    const codeElement = document.getElementById(codeId);
+    if (!codeElement) return;
 
-      // Decode HTML entities
-      const textarea = document.createElement('textarea');
-      textarea.innerHTML = rawCode;
-      const decodedCode = textarea.value;
+    const text = codeElement.textContent || '';
+    
+    navigator.clipboard.writeText(text).then(() => {
+      const copyText = button.querySelector('.copy-text');
+      const svg = button.querySelector('svg');
+      
+      if (copyText) {
+        copyText.textContent = 'Copied!';
+        copyText.classList.add('text-emerald-400');
+        copyText.classList.remove('text-slate-400');
+      }
 
-      // Copy to clipboard
-      navigator.clipboard.writeText(decodedCode).then(() => {
-        // Find the button and update its text
-        const codeBlock = document.querySelector(`[data-code-id="${codeId}"]`);
-        if (codeBlock) {
-          const button = codeBlock.querySelector('.copy-btn');
-          const copyText = button?.querySelector('.copy-text');
-          if (copyText) {
-            const originalText = copyText.textContent;
-            copyText.textContent = 'Copied!';
-            setTimeout(() => {
-              copyText.textContent = originalText;
-            }, 2000);
-          }
+      if (svg) {
+        svg.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />';
+        svg.classList.add('text-emerald-400');
+        svg.classList.remove('text-slate-400');
+      }
+
+      setTimeout(() => {
+        if (copyText) {
+          copyText.textContent = 'Copy';
+          copyText.classList.remove('text-emerald-400');
+          copyText.classList.add('text-slate-400');
         }
-      }).catch(err => {
-        console.error('Failed to copy code:', err);
-      });
-    };
+        if (svg) {
+          svg.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />';
+          svg.classList.remove('text-emerald-400');
+          svg.classList.add('text-slate-400');
+        }
+      }, 2000);
+    }).catch(err => {
+      console.error('Failed to copy code:', err);
+    });
   }
 }

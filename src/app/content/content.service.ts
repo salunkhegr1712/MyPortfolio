@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, shareReplay } from 'rxjs';
+import { Observable, shareReplay, map } from 'rxjs';
 import {
   AboutContent,
   ContactContent,
@@ -18,7 +18,12 @@ export class ContentService {
   private readonly projectsContent$ = this.loadJson<ProjectsContent>('assets/content/projects.json');
   private readonly skillsContent$ = this.loadJson<SkillsContent>('assets/content/skills.json');
   private readonly contactContent$ = this.loadJson<ContactContent>('assets/content/contact.json');
-  private readonly blogsContent$ = this.loadJson<BlogsContent>('assets/blogs/index.json');
+  private readonly blogsContent$ = this.loadJson<BlogsContent>('assets/blogs/index.json').pipe(
+    map(content => ({
+      ...content,
+      blogs: [...content.blogs].sort((a, b) => this.compareDatesDesc(a.date, b.date))
+    }))
+  );
 
   getAboutContent(): Observable<AboutContent> {
     return this.aboutContent$;
@@ -46,5 +51,14 @@ export class ContentService {
 
   private loadJson<T>(path: string): Observable<T> {
     return this.http.get<T>(path).pipe(shareReplay(1));
+  }
+
+  private compareDatesDesc(dateA: string, dateB: string): number {
+    const toTime = (value: string) => {
+      const time = new Date(value).getTime();
+      return Number.isNaN(time) ? 0 : time;
+    };
+
+    return toTime(dateB) - toTime(dateA);
   }
 }

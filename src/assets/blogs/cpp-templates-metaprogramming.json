@@ -1,0 +1,16 @@
+{
+  "id": "cpp-templates-metaprogramming",
+  "title": "C++ Templates & Metaprogramming",
+  "summary": "Explore C++ template programming: function templates, class templates, variadic templates, and compile-time optimization.",
+  "author": "Ghanasham Salunkhe",
+  "date": "2022-11-20",
+  "image": "https://images.unsplash.com/photo-1568716353609-12ddc5c67f04?w=800&h=450&fit=crop",
+  "tags": [
+    "C++",
+    "Templates",
+    "Metaprogramming",
+    "Advanced C++"
+  ],
+  "readTime": 15,
+  "content": "## Introduction\n\nC++ templates are a powerful feature that allows writing generic and reusable code. Template metaprogramming takes this further by performing computations at compile-time.\n\n## Function Templates\n\nFunction templates allow you to write a single function that works with different data types.\n\n```cpp\ntemplate <typename T>\nT max(T a, T b) {\n    return (a > b) ? a : b;\n}\n```\n\n## Class Templates\n\nClass templates are used to create generic classes, such as the STL containers.\n\n```cpp\ntemplate <typename T>\nclass Box {\nprivate:\n    T value;\npublic:\n    Box(T v) : value(v) {}\n    T getValue() { return value; }\n};\n```\n\n## Variadic Templates\n\nVariadic templates allow templates to accept an arbitrary number of arguments.\n\n```cpp\ntemplate<typename... Args>\nvoid print(Args... args) {\n    (std::cout << ... << args) << '\\n';\n}\n```\n\n## Conclusion\n\nTemplates are essential for modern C++ programming, enabling high-performance, type-safe, and generic code."
+}

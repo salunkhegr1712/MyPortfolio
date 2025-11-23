@@ -1,33 +1,48 @@
 {
   "blogs": [
     {
-      "id": "getting-started-with-spring-boot",
-      "title": "Getting Started with Spring Boot Microservices",
-      "summary": "Learn how to build production-ready microservices using Spring Boot, Spring Cloud, and best practices for scalable architecture.",
+      "id": "docker-containerization-guide",
+      "title": "Docker Containerization Complete Guide",
+      "summary": "Learn Docker fundamentals, Dockerfile optimization, multi-stage builds, Docker Compose, and container orchestration basics.",
       "author": "Ghanasham Salunkhe",
-      "date": "2025-01-15",
-      "image": "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&h=450&fit=crop",
-      "tags": ["Spring Boot", "Java", "Microservices", "Backend"],
-      "readTime": 8
+      "date": "2025-04-20",
+      "image": "https://images.unsplash.com/photo-1605745341112-85968b19335b?w=800&h=450&fit=crop",
+      "tags": [
+        "Docker",
+        "Containerization",
+        "DevOps",
+        "Deployment"
+      ],
+      "readTime": 12
     },
     {
-      "id": "apache-spark-data-processing",
-      "title": "Large-Scale Data Processing with Apache Spark",
-      "summary": "Discover how to process terabytes of data efficiently using Apache Spark, Databricks, and Azure Data Lake.",
+      "id": "cpp-templates-metaprogramming",
+      "title": "C++ Templates & Metaprogramming",
+      "summary": "Explore C++ template programming: function templates, class templates, variadic templates, and compile-time optimization.",
       "author": "Ghanasham Salunkhe",
-      "date": "2025-02-20",
-      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=450&fit=crop",
-      "tags": ["Apache Spark", "Big Data", "Azure", "Data Engineering"],
-      "readTime": 10
+      "date": "2022-11-22",
+      "image": "https://images.unsplash.com/photo-1568716353609-12ddc5c67f04?w=800&h=450&fit=crop",
+      "tags": [
+        "C++",
+        "Templates",
+        "Metaprogramming",
+        "Advanced C++"
+      ],
+      "readTime": 15
     },
     {
-      "id": "event-driven-architecture-kafka",
-      "title": "Building Event-Driven Systems with Kafka",
-      "summary": "Explore event-driven architecture patterns using Apache Kafka and Azure Event Hubs for real-time data streaming.",
+      "id": "clean-code-principles",
+      "title": "Clean Code Principles Every Developer Should Know",
+      "summary": "Write readable, maintainable code with naming conventions, function design, comments, and refactoring techniques.",
       "author": "Ghanasham Salunkhe",
-      "date": "2025-03-10",
-      "image": "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=450&fit=crop",
-      "tags": ["Kafka", "Event Hubs", "Azure", "Distributed Systems"],
+      "date": "2024-10-30",
+      "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=450&fit=crop",
+      "tags": [
+        "Clean Code",
+        "Software Engineering",
+        "Best Practices",
+        "Refactoring"
+      ],
       "readTime": 12
     }
   ]
